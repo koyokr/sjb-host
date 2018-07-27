@@ -22,7 +22,7 @@ func SelectDomainWhereRoundRobinHasBlocked() (ds []models.Domain) {
 	err := db.Select(
 		&ds,
 		`SELECT * FROM domains
-		WHERE round_robin=TRUE,has_blocked=TRUE
+		WHERE round_robin=TRUE AND has_blocked=TRUE
 		ORDER BY host`,
 	)
 	if err != nil {
