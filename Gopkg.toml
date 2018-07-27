@@ -1,0 +1,28 @@
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/jmoiron/sqlx"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/julienschmidt/httprouter"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/lib/pq"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/miekg/dns"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/rs/cors"
+
+[prune]
+  go-tests = true
+  unused-packages = true
+
+[metadata.heroku]
+  root-package = "github.com/koyokr/sjb-host"
+  go-version = "go1.10.3"

@@ -1,0 +1,5 @@
+{
+	"name": "sjb-host",
+	"repository": "https://github.com/koyokr/sjb-host",
+	"keywords": ["go", "sjb", "host", "dns"]
+}
