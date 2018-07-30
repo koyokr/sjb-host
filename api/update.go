@@ -20,11 +20,11 @@ func createResult() string {
 	return s.String()
 }
 
-func updateAsyncDB() (is_update chan bool, read_data chan string) {
-	var (
-		write_domain chan models.Domain
-		write_ipss   chan []models.Ips
-	)
+func updateAsyncDB() (chan bool, chan string) {
+	is_update := make(chan bool)
+	read_data := make(chan string)
+	write_domain := make(chan models.Domain)
+	write_ipss := make(chan []models.Ips)
 
 	go func() {
 		data := createResult()
