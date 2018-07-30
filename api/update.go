@@ -27,7 +27,7 @@ func updateAsyncDB() (is_update chan bool, read_data chan string) {
 	)
 
 	go func() {
-		var data string
+		data := createResult()
 		for {
 			if <-is_update {
 				domain := <-write_domain
