@@ -1,4 +1,4 @@
-package main
+package api
 
 import (
 	"sort"
@@ -27,9 +27,10 @@ func lookup(cli *dns.Client, host string, ns string) (ips models.Ips) {
 
 func lookupAll(host string) (ipss []models.Ips) {
 	nss := [...]string{
-		"1.1.1.1:53",
-		"8.8.8.8:53",
-		"9.9.9.9:53",
+		"1.1.1.1:53",        // Cloudflare
+		"8.8.8.8:53",        // Google
+		"9.9.9.9:53",        // Quad9
+		"208.67.222.222:53", // OpenDNS
 	}
 
 	cli := new(dns.Client)

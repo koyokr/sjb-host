@@ -33,11 +33,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:7623a5219e80c1fdb9cf91a9f52d98e498645ba72a90fe032354ff41c81954ab"
+  digest = "1:e8205d5426a37d6d5b4f44de12b1e0411e251b36c29e06694701c963d3faa59b"
   name = "github.com/miekg/dns"
   packages = ["."]
   pruneopts = "UT"
-  revision = "1e845a5b06ea5740b087217f6f8b9531dd719364"
+  revision = "b559d43c3114c4b1c1823b2fc157b42bc30ba273"
 
 [[projects]]
   branch = "master"
@@ -70,7 +70,7 @@
     "ipv6",
   ]
   pruneopts = "UT"
-  revision = "3673e40ba22529d22c3fd7c93e97b0ce50fa7bdd"
+  revision = "c4299a1a0d8524c11563db160fbf9bddbceadb21"
 
 [solve-meta]
   analyzer-name = "dep"
