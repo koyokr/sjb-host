@@ -41,11 +41,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:49e39c5d2f1122e5a95fed82a9c50fe9f7b66fa2bf76db76f393a89aa264d027"
+  digest = "1:d22e03adee40952275841c7d8a680c7f8cf9ceae2ec3d454d830c3ec03f0d099"
   name = "github.com/rs/cors"
   packages = ["."]
   pruneopts = "UT"
-  revision = "02026070ea746d775e2d8dfe1efbea899a42f322"
+  revision = "15587285ef6b6e7a3f657e2e00f9f271883bcf22"
 
 [[projects]]
   branch = "master"
@@ -60,7 +60,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:809955aecc90b55dbed131c7a47d523f347b7dc64726732cfb5e437748729798"
+  digest = "1:219d8cb001b7b55a93dd8b304e2c94687303926609b9996897f2aeb9ee073778"
   name = "golang.org/x/net"
   packages = [
     "bpf",
@@ -70,7 +70,7 @@
     "ipv6",
   ]
   pruneopts = "UT"
-  revision = "c4299a1a0d8524c11563db160fbf9bddbceadb21"
+  revision = "a0f8a16cb08c06df97cbdf9c47f4731ba548c33c"
 
 [solve-meta]
   analyzer-name = "dep"

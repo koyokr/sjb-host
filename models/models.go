@@ -11,14 +11,6 @@ type Ips struct {
 	Domains []Domain
 }
 
-func SliceToIpsValue(slice []string) string {
-	return strings.Join(slice, ",")
-}
-
-func (ips *Ips) Slice() []string {
-	return strings.Split(ips.Value, ",")
-}
-
 type DomainToIps struct {
 	DomainId int `db:"domain_id"`
 	IpsId    int `db:"ips_id"`
@@ -33,29 +25,43 @@ type Domain struct {
 	Ipss []Ips
 }
 
+func SliceToIpsValue(slice []string) string {
+	return strings.Join(slice, ",")
+}
+
 func blocked(ip string) bool {
 	return strings.HasPrefix(ip, "172") || strings.HasPrefix(ip, "192")
 }
 
-func containsBlocked(ipss []Ips) bool {
-	for _, ips := range ipss {
-		for _, ip := range ips.Slice() {
-			if blocked(ip) {
-				return true
-			}
+func (ips *Ips) Slice() []string {
+	return strings.Split(ips.Value, ",")
+}
+
+func (ips *Ips) HasBlockedIp() bool {
+	for _, ip := range ips.Slice() {
+		if blocked(ip) {
+			return true
 		}
 	}
 	return false
 }
 
-func (d *Domain) UpdateIpss(ipss []Ips) (newipss []Ips) {
+func (domain *Domain) HasBlockedIps() bool {
+	for _, ips := range domain.Ipss {
+		if ips.HasBlockedIp() {
+			return true
+		}
+	}
+	return false
+}
+
+func (domain *Domain) UpdateIpss(ipss []Ips) (newipss []Ips) {
 	appended := map[string]bool{}
 
-	for _, dips := range d.Ipss {
-		s := dips.Value
+	for _, ips := range domain.Ipss {
+		s := ips.Value
 		appended[s] = true
 	}
-
 	for _, ips := range ipss {
 		s := ips.Value
 		if appended[s] != true {
@@ -65,9 +71,9 @@ func (d *Domain) UpdateIpss(ipss []Ips) (newipss []Ips) {
 	}
 
 	if len(newipss) > 0 {
-		d.Ipss = append(d.Ipss, newipss...)
-		d.RoundRobin = len(d.Ipss) > 1
-		d.HasBlocked = containsBlocked(d.Ipss)
+		domain.Ipss = append(domain.Ipss, newipss...)
+		domain.RoundRobin = len(domain.Ipss) > 1
+		domain.HasBlocked = domain.HasBlockedIps()
 	}
 	return newipss
 }

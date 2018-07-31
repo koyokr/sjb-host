@@ -13,14 +13,14 @@ import (
 func main() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
-	err := api.InitDB(os.Getenv("DATABASE_URL"))
+	err := api.Init(os.Getenv("DATABASE_URL"))
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer api.CloseDB()
+	defer api.Close()
 
 	router := httprouter.New()
-	router.GET("/", api.GetDomainsInfo())
+	router.GET("/", api.GetDomains)
 
 	router.NotFound = http.HandlerFunc(api.NotFound)
 	router.MethodNotAllowed = http.HandlerFunc(api.MethodNotAllowed)

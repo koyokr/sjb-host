@@ -4,24 +4,8 @@ import (
 	"database/sql"
 	"log"
 
-	"github.com/jmoiron/sqlx"
 	"github.com/koyokr/sjb-host/models"
-	_ "github.com/lib/pq"
 )
-
-var (
-	db *sqlx.DB
-)
-
-func InitDB(conn string) (err error) {
-	db, err = sqlx.Connect("postgres", conn)
-	db.SetMaxOpenConns(20)
-	return err
-}
-
-func CloseDB() {
-	db.Close()
-}
 
 func selectDomainWhereRoundRobinHasBlocked() (ds []models.Domain) {
 	err := db.Select(
