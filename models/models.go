@@ -75,5 +75,5 @@ func (domain *Domain) UpdateIpss(ipss []Ips) (newipss []Ips) {
 		domain.RoundRobin = len(domain.Ipss) > 1
 		domain.HasBlocked = domain.HasBlockedIps()
 	}
-	return newipss
+	return
 }

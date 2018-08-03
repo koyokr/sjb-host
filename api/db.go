@@ -17,7 +17,7 @@ func selectDomainWhereRoundRobinHasBlocked() (ds []models.Domain) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	return ds
+	return
 }
 
 func selectDomain() (ds []models.Domain) {
@@ -28,7 +28,7 @@ func selectDomain() (ds []models.Domain) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	return ds
+	return
 }
 
 func updateDomain(d models.Domain) {
@@ -51,7 +51,7 @@ func selectIpsJoinDomainId(domainid int) (ipss []models.Ips) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	return ipss
+	return
 }
 
 func insertIpssWithDomainToIpss(domainid int, ipss []models.Ips) {

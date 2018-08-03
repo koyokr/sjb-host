@@ -11,18 +11,19 @@ func lookup(cli *dns.Client, host string, ns string) (ips models.Ips) {
 	msg := new(dns.Msg)
 	msg.SetQuestion(dns.Fqdn(host), dns.TypeA)
 	r, _, err := cli.Exchange(msg, ns)
-
-	if err == nil && r.Rcode == dns.RcodeSuccess {
-		var slice []string
-		for _, a := range r.Answer {
-			if t, ok := a.(*dns.A); ok {
-				slice = append(slice, t.A.String())
-			}
-		}
-		sort.Strings(slice)
-		ips.Value = models.SliceToIpsValue(slice)
+	if err != nil && r.Rcode != dns.RcodeSuccess {
+		return
 	}
-	return ips
+
+	var slice []string
+	for _, a := range r.Answer {
+		if t, ok := a.(*dns.A); ok {
+			slice = append(slice, t.A.String())
+		}
+	}
+	sort.Strings(slice)
+	ips.Value = models.SliceToIpsValue(slice)
+	return
 }
 
 func lookupAll(host string) (ipss []models.Ips) {
@@ -48,5 +49,5 @@ func lookupAll(host string) (ipss []models.Ips) {
 			ipss = append(ipss, ips)
 		}
 	}
-	return ipss
+	return
 }
